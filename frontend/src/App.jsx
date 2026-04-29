@@ -11,17 +11,16 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
+    async function loadProducts() {
+      try {
+        const data = await fetchProducts();
+        setProducts(data);
+      } catch {
+        toast.error('Failed to load products');
+      }
+    }
     loadProducts();
   }, []);
-
-  const loadProducts = async () => {
-    try {
-      const data = await fetchProducts();
-      setProducts(data);
-    } catch (err) {
-      toast.error('Failed to load products');
-    }
-  };
 
   const handleAddToCart = (product) => {
     const existing = cartItems.find((item) => item.id === product.id);
@@ -50,7 +49,7 @@ export default function App() {
       toast.success(response.message || 'Checkout successful! 🎉', { duration: 4000 });
       setCartItems([]);
       setIsCartOpen(false);
-    } catch (err) {
+    } catch {
       toast.error('Checkout failed. Please try again.');
     }
   };
