@@ -3,9 +3,9 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
-    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.js'
+    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.js',
   },
   transform: {
-    '^.+\\.[t|j]sx?$': 'babel-jest'
-  }
+    '^.+\\.[t|j]sx?$': 'babel-jest',
+  },
 };

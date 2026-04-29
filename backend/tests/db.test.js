@@ -22,9 +22,7 @@ describe('Database Module', () => {
 
   test('products table exists', () => {
     const tables = db
-      .prepare(
-        "SELECT name FROM sqlite_master WHERE type='table' AND name='products'"
-      )
+      .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='products'")
       .all();
     expect(tables).toHaveLength(1);
     expect(tables[0].name).toBe('products');
@@ -42,9 +40,7 @@ describe('Database Module', () => {
   });
 
   test('products table is seeded with data', () => {
-    const count = db
-      .prepare('SELECT COUNT(*) as count FROM products')
-      .get().count;
+    const count = db.prepare('SELECT COUNT(*) as count FROM products').get().count;
     expect(count).toBeGreaterThan(0);
   });
 
@@ -71,9 +67,7 @@ describe('Database Module', () => {
     expect(result.changes).toBe(1);
     const newId = result.lastInsertRowid;
 
-    const product = db
-      .prepare('SELECT * FROM products WHERE id = ?')
-      .get(newId);
+    const product = db.prepare('SELECT * FROM products WHERE id = ?').get(newId);
     expect(product.name).toBe('Test Product');
     expect(product.price).toBe(9.99);
 

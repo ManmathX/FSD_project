@@ -33,7 +33,7 @@ app.post('/api/checkout', (req, res) => {
         total += product.price * item.quantity;
       }
     }
-    
+
     // Simulate order success
     res.json({ message: 'Checkout successful', total, orderId: Date.now() });
   } catch (err) {

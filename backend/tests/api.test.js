@@ -80,38 +80,29 @@ describe('API Tests', () => {
         { productId: products[1].id, quantity: 2 },
       ];
 
-      const res = await request(app)
-        .post('/api/checkout')
-        .send({ items: cartItems });
+      const res = await request(app).post('/api/checkout').send({ items: cartItems });
 
-      const expectedTotal =
-        products[0].price * 1 + products[1].price * 2;
+      const expectedTotal = products[0].price * 1 + products[1].price * 2;
       expect(res.statusCode).toBe(200);
       expect(res.body.total).toBeCloseTo(expectedTotal, 2);
     });
 
     test('returns 400 with empty items array', async () => {
-      const res = await request(app)
-        .post('/api/checkout')
-        .send({ items: [] });
+      const res = await request(app).post('/api/checkout').send({ items: [] });
 
       expect(res.statusCode).toBe(400);
       expect(res.body).toHaveProperty('error');
     });
 
     test('returns 400 with missing items field', async () => {
-      const res = await request(app)
-        .post('/api/checkout')
-        .send({});
+      const res = await request(app).post('/api/checkout').send({});
 
       expect(res.statusCode).toBe(400);
       expect(res.body).toHaveProperty('error', 'Invalid cart contents');
     });
 
     test('returns 400 when items is not an array', async () => {
-      const res = await request(app)
-        .post('/api/checkout')
-        .send({ items: 'not-an-array' });
+      const res = await request(app).post('/api/checkout').send({ items: 'not-an-array' });
 
       expect(res.statusCode).toBe(400);
     });

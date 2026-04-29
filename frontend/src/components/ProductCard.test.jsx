@@ -12,41 +12,29 @@ const mockProduct = {
 
 describe('ProductCard Component', () => {
   test('renders product name', () => {
-    render(
-      <ProductCard product={mockProduct} onAddToCart={jest.fn()} animationDelay={0} />
-    );
+    render(<ProductCard product={mockProduct} onAddToCart={jest.fn()} animationDelay={0} />);
     expect(screen.getByText('Premium Headphones')).toBeInTheDocument();
   });
 
   test('renders product description', () => {
-    render(
-      <ProductCard product={mockProduct} onAddToCart={jest.fn()} animationDelay={0} />
-    );
-    expect(
-      screen.getByText('High quality noise-canceling headphones.')
-    ).toBeInTheDocument();
+    render(<ProductCard product={mockProduct} onAddToCart={jest.fn()} animationDelay={0} />);
+    expect(screen.getByText('High quality noise-canceling headphones.')).toBeInTheDocument();
   });
 
   test('renders formatted price', () => {
-    render(
-      <ProductCard product={mockProduct} onAddToCart={jest.fn()} animationDelay={0} />
-    );
+    render(<ProductCard product={mockProduct} onAddToCart={jest.fn()} animationDelay={0} />);
     expect(screen.getByText('$299.99')).toBeInTheDocument();
   });
 
   test('renders product image with alt text', () => {
-    render(
-      <ProductCard product={mockProduct} onAddToCart={jest.fn()} animationDelay={0} />
-    );
+    render(<ProductCard product={mockProduct} onAddToCart={jest.fn()} animationDelay={0} />);
     const img = screen.getByAltText('Premium Headphones');
     expect(img).toBeInTheDocument();
     expect(img).toHaveAttribute('src', mockProduct.image_url);
   });
 
   test('renders "Add to Cart" button', () => {
-    render(
-      <ProductCard product={mockProduct} onAddToCart={jest.fn()} animationDelay={0} />
-    );
+    render(<ProductCard product={mockProduct} onAddToCart={jest.fn()} animationDelay={0} />);
     expect(screen.getByText('Add to Cart')).toBeInTheDocument();
   });
 
@@ -54,9 +42,7 @@ describe('ProductCard Component', () => {
     const user = userEvent.setup();
     const mockOnAdd = jest.fn();
 
-    render(
-      <ProductCard product={mockProduct} onAddToCart={mockOnAdd} animationDelay={0} />
-    );
+    render(<ProductCard product={mockProduct} onAddToCart={mockOnAdd} animationDelay={0} />);
 
     await user.click(screen.getByText('Add to Cart'));
     expect(mockOnAdd).toHaveBeenCalledTimes(1);
