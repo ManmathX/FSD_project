@@ -12,7 +12,7 @@ app.get('/api/products', (req, res) => {
   try {
     const products = db.prepare('SELECT * FROM products').all();
     res.json(products);
-  } catch (err) {
+  } catch {
     res.status(500).json({ error: 'Failed to fetch products' });
   }
 });
@@ -36,7 +36,7 @@ app.post('/api/checkout', (req, res) => {
 
     // Simulate order success
     res.json({ message: 'Checkout successful', total, orderId: Date.now() });
-  } catch (err) {
+  } catch {
     res.status(500).json({ error: 'Checkout failed' });
   }
 });

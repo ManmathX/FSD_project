@@ -1,5 +1,3 @@
-const Database = require('better-sqlite3');
-
 describe('Database Module', () => {
   let db;
 
