@@ -83,7 +83,7 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Check code formatting
         run: npx prettier --check .
@@ -110,7 +110,7 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Run tests with coverage
         run: npx jest --coverage --forceExit
@@ -136,7 +136,7 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Build for production
         run: npm run build
